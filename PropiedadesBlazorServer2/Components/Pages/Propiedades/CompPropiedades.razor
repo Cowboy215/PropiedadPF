@@ -1,4 +1,5 @@
 ﻿@page "/propiedades"
+@using Microsoft.AspNetCore.Authorization
 @using PropiedadesBlazorServer2.Modelos.DTO
 @using PropiedadesBlazorServer2.Servicios
 @using Repositorio.IRepositorio
@@ -7,6 +8,8 @@
 @inject IJSRuntime JsRuntime
 @inject NavigationManager navigationManager
 @inject ISubidaArchivo SubidaArchivo
+
+@attribute [Authorize]
 
 <PageTitle>Propiedades</PageTitle>
 <h1 class="text-center">Propiedades: @estado</h1>

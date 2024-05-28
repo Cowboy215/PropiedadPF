@@ -1,4 +1,5 @@
 ﻿@page "/editar-propiedad/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
 @using PropiedadesBlazorServer2.Modelos.DTO
 @using PropiedadesBlazorServer2.Servicios
 @using Repositorio.IRepositorio
@@ -9,6 +10,8 @@
 @inject NavigationManager navigationManager
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
+
+@attribute [Authorize]
 
 <PageTitle>Editar Propiedad</PageTitle>
 <h1 class="text-center">Editar Propiedad</h1>

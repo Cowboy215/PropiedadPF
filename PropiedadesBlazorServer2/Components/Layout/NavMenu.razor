@@ -21,24 +21,29 @@
             </NavLink>
         </div>
 
+        @* 
+            <-- Botonos de Prueba usando JS -->
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="blazor-javascript">
                 <i class="bi2 bi-filetype-js"></i>&nbsp; Java Script Blazor
             </NavLink>
-        </div>
+        </div> *@
+        <AuthorizeView>
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="categorias">
+                        <i class="bi2 bi-bookmark-plus-fill"></i>&nbsp; Categoria
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="categorias">
-                <i class="bi2 bi-bookmark-plus-fill"></i>&nbsp; Categoria
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="propiedades">
-                <i class="bi2 bi-house-gear-fill"></i>&nbsp; Propiedades
-            </NavLink>
-        </div>
-
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="propiedades">
+                        <i class="bi2 bi-house-gear-fill"></i>&nbsp; Propiedades
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+        
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="auth">
                 <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
@@ -57,7 +62,7 @@
                         <AntiforgeryToken />
                         <input type="hidden" name="ReturnUrl" value="@currentUrl" />
                         <button type="submit" class="nav-link">
-                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Cerrar Cession
                         </button>
                     </form>
                 </div>
@@ -65,12 +70,12 @@
             <NotAuthorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Registrarse
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Iniciar Sesion
                     </NavLink>
                 </div>
             </NotAuthorized>

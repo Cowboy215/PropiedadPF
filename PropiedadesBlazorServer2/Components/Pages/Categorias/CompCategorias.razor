@@ -1,10 +1,12 @@
 ﻿@page "/categorias"
+@using Microsoft.AspNetCore.Authorization
 @using PropiedadesBlazorServer2.Modelos.DTO
 @using Repositorio.IRepositorio
 @inject ICategoriaRepositorio CategoriaRepositorio
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
 
+@attribute [Authorize]
 
 <PageTitle>Categorias</PageTitle>
 <h1 class="text-center">Categorias</h1>

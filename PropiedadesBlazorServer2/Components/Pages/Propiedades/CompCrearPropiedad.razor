@@ -1,4 +1,5 @@
 ﻿@page "/crear-propiedad"
+@using Microsoft.AspNetCore.Authorization
 @using PropiedadesBlazorServer2.Modelos.DTO
 @using PropiedadesBlazorServer2.Servicios
 @using Repositorio.IRepositorio
@@ -9,6 +10,8 @@
 @inject NavigationManager navigationManager
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
+
+@attribute [Authorize]
 
 <PageTitle>Crear Propiedad</PageTitle>
 <h1 class="text-center">Crear Propiedad</h1>

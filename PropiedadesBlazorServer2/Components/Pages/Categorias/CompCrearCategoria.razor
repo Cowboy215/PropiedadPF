@@ -1,10 +1,13 @@
 ﻿@page "/crear-categoria"
+@using Microsoft.AspNetCore.Authorization
 @using PropiedadesBlazorServer2.Modelos.DTO
 @using Repositorio.IRepositorio
 @inject ICategoriaRepositorio CategoriaRepositorio
 @inject NavigationManager navigationManager
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
+
+@attribute [Authorize]
 
 <PageTitle>Crear Categoria</PageTitle>
 <h1 class="text-center">Crear Categorias</h1>
