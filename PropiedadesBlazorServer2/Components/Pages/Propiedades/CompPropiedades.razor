@@ -12,7 +12,7 @@
 @attribute [Authorize]
 
 <PageTitle>Propiedades</PageTitle>
-<h1 class="text-center">Propiedades: @estado</h1>
+<h1 class="text-center">Propiedades</h1>
 
 <div class="card">
     <div class="card-header">
@@ -116,13 +116,13 @@
             propiedadDTO = await PropiedadRepositorio.GetAllPropiedad();
         }
 
-        if (result)
-        {
-            estado = "Le dio Guradar";
-        }else
-        {
-            estado = "Le dio No Guardar";
-        }
+        // if (result)
+        // {
+        //     estado = "Le dio Guradar";
+        // }else
+        // {
+        //     estado = "Le dio No Guardar";
+        // }
 
     }
 }
