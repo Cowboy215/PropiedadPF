@@ -1,0 +1,94 @@
+﻿@page "/crear-categoria"
+@using PropiedadesBlazorServer2.Modelos.DTO
+@using Repositorio.IRepositorio
+@inject ICategoriaRepositorio CategoriaRepositorio
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Crear Categoria</PageTitle>
+<h1 class="text-center">Crear Categorias</h1>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-7">
+                <h2 class="text-dark">Nueva Categorias</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">     @* Cuidado con el OnInvalidSubmit es OnValidSubmit *@
+        <EditForm Model="categoriaDTO" OnValidSubmit="@(() => ManejadorOnCrearCategoria())">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+            <div class="container">
+               
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Nombre: </label>
+                        </div>
+
+                        <div class="col-6">
+                            <InputText @bind-Value="categoriaDTO.NombreCategoria" class="form-control" placeholder="Ingresa el Nombre"></InputText>
+                            <ValidationMessage For="() => categoriaDTO.NombreCategoria"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Descripcion: </label>
+                        </div>
+
+                        <div class="col-6">
+                            <InputText @bind-Value="categoriaDTO.Descripcion" class="form-control" placeholder="Ingresa la descripcion"></InputText>
+                            <ValidationMessage For="() => categoriaDTO.Descripcion"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success"><i class="bi bi-floppy2-fill"></i>&nbsp; Guardar Cambios</button>
+                        </div>
+
+                        <div class="col-6">
+                            <NavLink href="categorias" class="btn btn-secondary"><i class="bi bi-arrow-left-square-fill"></i>&nbsp; Volver Atras</NavLink>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@code {
+    private CategoriaDTO categoriaDTO { get; set; } = new CategoriaDTO();
+
+    private async Task ManejadorOnCrearCategoria()
+    {
+        var nombreCategoria = await CategoriaRepositorio.NombreCategoriaExiste(categoriaDTO.NombreCategoria);
+        if (nombreCategoria != null)
+        {
+            await JsRuntime.ToastrError("El nombre de la categoria ya Existe");
+        }
+        else
+        {
+            var crearCategoria = await CategoriaRepositorio.CrearCategoria(categoriaDTO);
+            await JsRuntime.ToastrSuccess("Categoria Creada Exitosamente");
+            await Task.Delay(2000);
+            navigationManager.NavigateTo("/categorias");
+        }
+
+       
+    }
+}
