@@ -7,7 +7,7 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, User")]
 
 <PageTitle>Crear Categoria</PageTitle>
 <h1 class="text-center">Crear Categorias</h1>

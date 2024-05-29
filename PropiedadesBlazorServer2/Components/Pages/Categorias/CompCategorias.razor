@@ -6,7 +6,7 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, User")]
 
 <PageTitle>Categorias</PageTitle>
 <h1 class="text-center">Categorias</h1>
@@ -43,8 +43,10 @@
                                 <td>@categoria.NombreCategoria</td>
                                 <td>@categoria.Descripcion</td>
                                 <td>
-                                <NavLink href="@($"editar-categoria/{categoria.Id}")" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Editar</NavLink>
-                                <button class="btn btn-danger" @onclick="() => ManejadorOnBorrar(categoria.Id)"><i class="bi bi-trash-fill"></i>&nbsp; Borrar</button>
+                                <AuthorizeView Roles="Admin">
+                                    <NavLink href="@($"editar-categoria/{categoria.Id}")" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Editar</NavLink>
+                                    <button class="btn btn-danger" @onclick="() => ManejadorOnBorrar(categoria.Id)"><i class="bi bi-trash-fill"></i>&nbsp; Borrar</button>
+                                </AuthorizeView>
                                 </td>
                             </tr>
                         }

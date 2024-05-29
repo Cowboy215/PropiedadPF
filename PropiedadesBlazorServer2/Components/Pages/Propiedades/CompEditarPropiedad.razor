@@ -11,7 +11,7 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JsRuntime
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin")]
 
 <PageTitle>Editar Propiedad</PageTitle>
 <h1 class="text-center">Editar Propiedad</h1>

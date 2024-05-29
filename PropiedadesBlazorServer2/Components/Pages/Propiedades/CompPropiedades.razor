@@ -9,7 +9,7 @@
 @inject NavigationManager navigationManager
 @inject ISubidaArchivo SubidaArchivo
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, User")]
 
 <PageTitle>Propiedades</PageTitle>
 <h1 class="text-center">Propiedades</h1>
@@ -60,8 +60,10 @@
                             <td>@propiedad.Activo</td>
                             <td>@propiedad.Categoria.NombreCategoria</td>
                             <td>
-                                <NavLink href="@($"editar-propiedad/{propiedad.Id}")" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Editar</NavLink>
-                                <button class="btn btn-danger" @onclick="() => ManejadorOnBorrar(propiedad.Id)"><i class="bi bi-trash-fill"></i>&nbsp; Borrar</button>
+                                <AuthorizeView Roles="Admin">
+                                    <NavLink href="@($"editar-propiedad/{propiedad.Id}")" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Editar</NavLink>
+                                    <button class="btn btn-danger" @onclick="() => ManejadorOnBorrar(propiedad.Id)"><i class="bi bi-trash-fill"></i>&nbsp; Borrar</button>
+                                </AuthorizeView>
                             </td>
                         </tr>
                     }
